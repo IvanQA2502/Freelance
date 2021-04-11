@@ -1,0 +1,40 @@
+
+:root{
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #ffc107;
+    --secundario: #06a700;
+    --gris: #757575;
+}
+
+
+html{
+    font-size: 62.5%;
+}
+body{
+    font-size: 16px; /*1rem = 10px */    
+    font-family: 'Kiwi Maru', serif;
+    }
+
+.titulo {
+    
+    font-size: 3.8rem;
+    text-align: center;
+}
+.titulo span {
+    font-size: 2rem;
+}
+
+
+.barra-nav {
+    background-color: var(--secundario);
+}
+
+.contenedor {
+    width: 120rem;
+    margin: 0 auto;
+}
+
+.bg-nav {
+    background-color: var(--secundario);
+}
