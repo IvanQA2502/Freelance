@@ -3,38 +3,284 @@
     --blanco: #ffffff;
     --oscuro: #212121;
     --primario: #ffc107;
-    --secundario: #35d5e7fb;
+    --secundario: #0097a7;
     --gris: #757575;
 }
 
+/*GLOBAL*/
+
 html{
     font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory; /*y es para forma vertical, si colocamos x es para forma horizontal*/
 }
+
+
+.servicio ,
+.navegacion-prin,
+.formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body{
     font-size: 16px; /*1rem = 10px */    
     font-family: 'Krub', sans-serif;
-}
-.Titulo{
-    text-align: center;
-    font-size: 3.8rem;
-
-}
-.Titulo span{
-    font-size: 2rem;   
+    background-image: linear-gradient(to top, #dfe9f3 0%, var(--blanco));
 }
 
+
+/* en lugar de  width: 110rem; se escribe el max-width:110, con esto indicamos que sera el valor maximo y se ajusta 
+más a las pantallas  */
 .contenedor {
-    width: 120rem;
-    margin-top: 0;
-    margin-right: auto;
-    margin-bottom: 0;
-    margin-left: auto;
+    max-width: 100rem;
+    margin: 0 auto;
 }
 
-.nav-bg {
-    background-color: var(--secundario);
+.boton {
+    background-color: var(--secundario); /*Color de fondo*/
+    color: var(--blanco); /*Color de la letra*/
+    padding: 1rem 3rem; /*Es el color que hara hacia arriba y a los lados*/
+    margin-top: 3rem; /*la separación con el elemento de arriba*/
+    font-size: 2rem; /*tamaño de la letra*/
+    text-decoration: none; /*Quitar el subrayado del enlace*/
+    text-transform: uppercase; /*transformar a mayusculas*/
+    font-weight: bold; /*el tamaño de la letra dependiendo del estilo*/
+    border-radius: 1rem; /*Para que las orillas no queden en cuadro, quedan redondeadas*/
+    width: 90%; /*le indico que el tamaño del boton sea del 90% a donde pertenece*/
+    text-align: center; /*alineo el texto al centro*/
+    border: none; /*Quitar el borde en el input en la clase 43*/
 }
 
-.navegacion-principal{
+@media (min-width: 480px) {  /*Con este MQ le indico que si mide mas de 480px no tome el 90% si no que se resetea*/
+    .boton {
+        width: auto;
+
+    }
+}
+
+.boton:hover {  /*en el input al darle fortamo resetea todo, para que aparezca una mano(puntero) agrego esto*/
+    cursor: pointer;  
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+/*TIPOGRAFIA*/
+
+h1 {
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1,h2,h3{
+    text-align: center;
+}
+
+
+/*TITULOS*/
+
+.titulo span {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+
+
+/*UTILIDADES*/
+
+.w-sm-100 {
+    width: 100%;
+}
+@media (min-width: 480px) {
+    .w-sm-100{
+        width:auto;
+    }
+}
+
+.flex{
+    display: flex ;
+}
+.alinear-derecha {
+    justify-content: flex-end ;
+}
+
+
+/*NAVEGACION PRINCIPAL*/
+.nav-bg{
     background-color: var(--secundario);
 }
+.navegacion-prin {   
+    display: flex;
+    flex-direction: column;
+}
+
+/* Solo se escribe en el media query lo que deseamos cambiar, en este caso la dirección de la
+barra de navegacion lo demas no se escribe ya que queda heredaro 
+Nota: 480px son para celulares, 768px son para Tablet, 1140px para laptops o computadores de escritorio
+y 1400px para pantallas más grandes, es el más popular */
+@media (min-width: 768px) {
+    .navegacion-prin {  
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.navegacion-prin a {
+    display: block;
+    text-align: center;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+
+/* hoover son seudoclases de selector que nos permiten dar animación*/
+.navegacion-prin a:hover {
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+/*HERO*/
+
+/* para agregar la imagen se utiliza el URL y se agregan los 2 puntos para indicarle que esta fuera de esa carpeta 
+background-repeat: no-repeat; es para que la imagen no se repita
+background-size: cover; es para que cubra toda la pantalla*/
+.hero {
+    background-image: url(../Imagenes/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.contenido-hero{
+    position: absolute;
+    background-color: rgb(0 0 0 /70%); /*Esta es la nueva sintaxis*/
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-hero h2,
+.contenido-hero p{
+    color: var(--blanco);
+}
+
+.contenido-hero .ubicacion {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+/*SERVICIOS*/
+
+/*Coloco el MQ para indicarle que cuando este en pantallas pequeñas no deje las 3 columnas*/
+@media (min-width: 768px) {
+    .servicio{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;  /* Este es otra forma de relizar  grid-template-columns: 33.3% 33.3% 33.3%; o grid-template-columns 300px 300px, 300px:  */
+        column-gap: 2rem; /*Es como un margin realiza la separación de las columnas*/
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: 400; /*Esto es el tamaño de la letra normal es 400 ,  font-weight:normal */
+}
+
+.servicio p {
+    line-height: 2; /*Esto es el interlineado*/
+    text-align: center; /*Esto es para centrar el contenido del parrafo*/
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 10rem; /*Si se coloca 50% los hace un circulo perfecto, siempre y cuando sea un cuadrado*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*FORMULARIO*/
+
+.formulario {
+    background-color: var(--gris);
+    width: min(80rem,100%); /*Toma el valor más pequeño, evitamos un MQ*/
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none; /*Esto elimina el borde que por default da un formulario*/
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: bold; /*Esto es el tamaño de la letra normal es 700*/
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+.contenedor-campos {
+
+}
+.campos {
+    margin-bottom: 1rem;
+}
+
+.campos label {
+    color: var(--blanco);    
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.input-text {
+    background-color:var(--blanco);
+    width: 100%; /*para que tome todo el ancho de donde se encuentra*/
+    border: none;/*Es para eliminar el borde de los inputs*/
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
